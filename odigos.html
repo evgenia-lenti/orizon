@@ -1,0 +1,311 @@
+<title>Οδηγός Επίδειξης ΟΡΙΖΩΝ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;0,900;1,400&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#faf9f3; --card:#ffffff; --ink:#21241f; --muted:#6c7266;
+    --line:#e2e3d8; --line-soft:#eeefe6;
+    --avocado:#4c6b3d; --avocado-soft:#eaf0e2;
+    --purple:#5b4fa8; --purple-soft:#eae7f7;
+    --warn:#8a6a1f; --warn-soft:#f8f1dd;
+    --shadow:0 1px 2px rgba(33,36,31,.05), 0 8px 24px -12px rgba(33,36,31,.18);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#191b17; --card:#212420; --ink:#e9e7dc; --muted:#9aa093;
+      --line:#333729; --line-soft:#2a2d25;
+      --avocado:#9ec17e; --avocado-soft:#252c1f;
+      --purple:#a99ce0; --purple-soft:#232134;
+      --warn:#d9b45f; --warn-soft:#2c2617;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#191b17; --card:#212420; --ink:#e9e7dc; --muted:#9aa093;
+    --line:#333729; --line-soft:#2a2d25;
+    --avocado:#9ec17e; --avocado-soft:#252c1f;
+    --purple:#a99ce0; --purple-soft:#232134;
+    --warn:#d9b45f; --warn-soft:#2c2617;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Alegreya Sans","Segoe UI",system-ui,sans-serif;
+    font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:50rem; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2rem) 5rem}
+
+  h1,h2,h3{font-family:Alegreya,Georgia,serif; text-wrap:balance; margin:0}
+  h1{font-size:clamp(2.2rem,6vw,3.1rem); font-weight:900; line-height:1.08; letter-spacing:-.01em}
+  h2{font-size:clamp(1.5rem,3.6vw,1.95rem); font-weight:700; line-height:1.15}
+  h3{font-size:1.12rem; font-weight:700; margin-bottom:.35rem}
+  p{margin:0}
+
+  .eyebrow{
+    font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:1rem;
+  }
+  .lede{font-size:1.16rem; color:var(--muted); margin-top:1.1rem; max-width:38rem}
+
+  header.top{border-bottom:1px solid var(--line); padding-bottom:2.5rem; margin-bottom:2.75rem}
+
+  section{margin-top:3.5rem}
+  .sec-head{display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; margin-bottom:.4rem}
+  .chip{
+    display:inline-block; width:.7rem; height:.7rem; border-radius:50%; flex:none;
+    transform:translateY(-.1rem);
+  }
+  .chip.av{background:var(--avocado)}
+  .chip.pu{background:var(--purple)}
+  .chip.both{background:linear-gradient(105deg,var(--avocado) 50%,var(--purple) 50%)}
+  .sec-note{color:var(--muted); font-size:.95rem}
+
+  .link-card{
+    display:block; margin:1.25rem 0 1.75rem; padding:1rem 1.15rem;
+    background:var(--card); border:1px solid var(--line); border-radius:.6rem;
+    box-shadow:var(--shadow); text-decoration:none; color:inherit;
+    border-left:4px solid var(--line);
+  }
+  .link-card.av{border-left-color:var(--avocado)}
+  .link-card.pu{border-left-color:var(--purple)}
+  .link-card.both{border-left-color:var(--muted)}
+  .link-card .lbl{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .link-card .url{
+    display:block; margin-top:.3rem; font-weight:700; font-size:1.02rem;
+    word-break:break-all; color:var(--ink);
+  }
+  .link-card:hover .url{text-decoration:underline}
+
+  dl.actions{display:grid; grid-template-columns:1fr; gap:0; margin:1.5rem 0 0; border-top:1px solid var(--line-soft)}
+  @media (min-width:44rem){ dl.actions{grid-template-columns:13.5rem 1fr} }
+  dl.actions>dt{
+    font-weight:700; padding:.85rem 1rem .2rem 0; border-top:1px solid var(--line-soft);
+  }
+  dl.actions>dd{
+    margin:0; padding:0 0 .95rem; color:var(--muted);
+  }
+  @media (min-width:44rem){
+    dl.actions>dt{padding:.9rem 1rem .9rem 0}
+    dl.actions>dd{padding:.9rem 0; border-top:1px solid var(--line-soft)}
+  }
+  dl.actions>dt:first-of-type, dl.actions>dd:first-of-type{border-top:0}
+
+  .pages{display:flex; flex-wrap:wrap; gap:.4rem; margin:1.1rem 0 0; padding:0; list-style:none}
+  .pages li{
+    font-size:.85rem; font-weight:500; padding:.25rem .7rem; border-radius:999px;
+    border:1px solid var(--line); color:var(--muted); background:var(--card);
+  }
+  .pages li b{color:var(--ink); font-weight:700}
+
+  .callout{
+    margin-top:2rem; padding:1.1rem 1.25rem; border-radius:.6rem;
+    background:var(--warn-soft); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);
+  }
+  .callout h3{color:var(--warn); font-size:1rem; letter-spacing:.01em}
+  .callout ul{margin:.6rem 0 0; padding-left:1.1rem; color:var(--muted)}
+  .callout li{margin:.3rem 0}
+
+  .tip{background:var(--avocado-soft); border-color:color-mix(in srgb,var(--avocado) 30%,transparent)}
+  .tip h3{color:var(--avocado)}
+
+
+  footer{margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line); color:var(--muted); font-size:.92rem}
+  a{color:var(--ink)}
+  a:focus-visible, .link-card:focus-visible{outline:2px solid var(--avocado); outline-offset:3px; border-radius:.3rem}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Οδηγός επίδειξης · Αύγουστος 2026</p>
+    <h1>ΟΡΙΖΩΝ<br>Τρία σχέδια ιστοσελίδας</h1>
+    <p class="lede">
+      Τρεις προτάσεις σχεδιασμού για τον ειδησεογραφικό ιστότοπο, σε μορφή που μπορείτε να
+      περιηγηθείτε όπως ένα κανονικό site. Ανοίγουν σε οποιονδήποτε browser, σε υπολογιστή
+      ή κινητό. Δεν χρειάζεται λογαριασμός, εγκατάσταση ή κωδικός.
+    </p>
+  </header>
+
+  <section style="margin-top:0">
+    <div class="sec-head"><h2>Πριν ξεκινήσετε</h2></div>
+    <p class="sec-note">
+      Πρόκειται για <b>δείγματα σχεδιασμού</b>, όχι για λειτουργικό ειδησεογραφικό site. Τα κείμενα
+      και οι φωτογραφίες είναι ενδεικτικά και υπάρχουν για να δείξουν πώς «κάθεται» το πραγματικό
+      περιεχόμενο μέσα στο σχέδιο. Οι γκρίζες περιοχές είναι θέσεις φωτογραφιών.
+    </p>
+    <div class="callout tip">
+      <h3>Πώς να τα δείτε καλύτερα</h3>
+      <ul>
+        <li>Ανοίξτε τα πρώτα σε <b>υπολογιστή</b>, σε παράθυρο πλήρους οθόνης.</li>
+        <li>Δοκιμάστε τα ύστερα και σε <b>κινητό</b> — η διάταξη αλλάζει και προσαρμόζεται.</li>
+        <li>Κάντε κλικ ελεύθερα. Δεν υπάρχει τίποτα που να μπορείτε να χαλάσετε.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="chip both"></span>
+      <h2>Και τα δύο μαζί</h2>
+    </div>
+    <p class="sec-note">Η πιο βολική αφετηρία: περιέχει και τα δύο σχέδια με έναν διακόπτη για να τα συγκρίνετε.</p>
+
+    <a class="link-card both" href="https://evgenia-lenti.github.io/orizon/">
+      <span class="lbl">Σύνδεσμος</span>
+      <span class="url">https://evgenia-lenti.github.io/orizon/</span>
+    </a>
+
+    <dl class="actions">
+      <dt>Ο διακόπτης στην κορυφή</dt>
+      <dd>Δύο κουμπιά, <b>Avocado</b> και <b>Purple</b>, στο πάνω μέρος της οθόνης. Πατώντας τα εναλλάσσετε ανάμεσα στα δύο σχέδια χωρίς να φύγετε από τη σελίδα.</dd>
+
+      <dt>Τι περιέχει</dt>
+      <dd>Και τα δύο σχέδια ολόκληρα, με όλες τις σελίδες τους — δέκα συνολικά.</dd>
+
+      <dt>Πότε να το χρησιμοποιήσετε</dt>
+      <dd>Όταν θέλετε να δείτε την ίδια σελίδα στα δύο ύφη, τη μία αμέσως μετά την άλλη.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="chip av"></span>
+      <h2>Σχέδιο Avocado</h2>
+      <span class="sec-note">φωτεινό, κλασική εφημερίδα</span>
+    </div>
+    <p class="sec-note">
+      Σοβαρό, τυπογραφικό ύφος με σερίφ γραμματοσειρά και πράσινους τόνους. Ξεκινά σε φωτεινό θέμα.
+    </p>
+
+    <a class="link-card av" href="https://evgenia-lenti.github.io/orizon/avocado.html">
+      <span class="lbl">Σύνδεσμος</span>
+      <span class="url">https://evgenia-lenti.github.io/orizon/avocado.html</span>
+    </a>
+
+    <ul class="pages">
+      <li><b>Αρχική</b></li><li><b>Άρθρο</b></li><li><b>Κατηγορία</b></li><li><b>Ετικέτα</b></li><li><b>Βίντεο</b></li>
+    </ul>
+
+    <dl class="actions">
+      <dt>Μενού κατηγοριών</dt>
+      <dd>Η γραμμή κάτω από τον τίτλο: Ειδήσεις, Ελλάδα, Πολιτική, Οικονομία, Κόσμος, Γνώμες, Magazine, Πολιτισμός, Ψυχαγωγία, Υγεία, Καιρός. Ανοίγουν τη σελίδα κατηγορίας.</dd>
+
+      <dt>Σκοτεινό θέμα</dt>
+      <dd>Το εικονίδιο <b>φεγγαριού</b> πάνω δεξιά. Όλη η σελίδα γυρίζει σε σκούρα παλέτα· πατήστε το ξανά για επιστροφή. Αξίζει να το δείτε — είναι μισό από τη δουλειά του σχεδιασμού.</dd>
+
+      <dt>Συρτάρι κατηγοριών</dt>
+      <dd>Το εικονίδιο με τις <b>τρεις γραμμές</b>. Ανοίγει πλήρη κατάλογο κατηγοριών με σύντομη περιγραφή για την καθεμία.</dd>
+
+      <dt>Συρτάρι «Περισσότερα»</dt>
+      <dd>Το εικονίδιο με τις <b>τρεις τελείες</b>. Ανοίγει τη σύνοψη «Η μέρα με μια ματιά» με τις πέντε κορυφαίες ειδήσεις, αριθμημένες.</dd>
+
+      <dt>Έκτακτη είδηση</dt>
+      <dd>Η πράσινη λωρίδα με την ένδειξη ΤΩΡΑ. Οι τίτλοι εναλλάσσονται μόνοι τους· με τα βελάκια <b>‹</b> και <b>›</b> δεξιά πηγαίνετε στον προηγούμενο ή τον επόμενο.</dd>
+
+      <dt>Ετικέτες</dt>
+      <dd>Οι μικρές ενδείξεις κατηγορίας πάνω σε κάθε άρθρο (Πολιτική, Οικονομία, Κόσμος…) και οι σειρές με πλαίσιο κάτω από τους τίτλους ενοτήτων. Είναι <b>όλες</b> ενεργές και ανοίγουν τη σελίδα ετικέτας.</dd>
+
+      <dt>Σύνδεσμοι «Όλα →»</dt>
+      <dd>Δίπλα σε κάθε τίτλο ενότητας. Ανοίγουν τη σελίδα κατηγορίας — και στην ενότητα βίντεο, τη σελίδα βίντεο.</dd>
+
+      <dt>Άρθρα</dt>
+      <dd>Κάθε τίτλος ή φωτογραφία ανοίγει τη σελίδα άρθρου, με πλήρη διάταξη κειμένου, στοιχεία συντάκτη και προτεινόμενα.</dd>
+
+      <dt>Επιστροφή στην κορυφή</dt>
+      <dd>Το στρογγυλό βελάκι κάτω δεξιά, μόλις κατεβείτε λίγο στη σελίδα.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="chip pu"></span>
+      <h2>Σχέδιο Purple</h2>
+      <span class="sec-note">σκούρο, σύγχρονο ψηφιακό</span>
+    </div>
+    <p class="sec-note">
+      Πιο σύγχρονο ύφος, με σκούρο φόντο και μοβ τόνους. Ξεκινά σε σκοτεινό θέμα.
+    </p>
+
+    <a class="link-card pu" href="https://evgenia-lenti.github.io/orizon/purple.html">
+      <span class="lbl">Σύνδεσμος</span>
+      <span class="url">https://evgenia-lenti.github.io/orizon/purple.html</span>
+    </a>
+
+    <ul class="pages">
+      <li><b>Αρχική</b></li><li><b>Άρθρο</b></li><li><b>Κατηγορία</b></li><li><b>Ετικέτα</b></li><li><b>Βίντεο</b></li>
+    </ul>
+
+    <dl class="actions">
+      <dt>Μενού κατηγοριών</dt>
+      <dd>Η οριζόντια γραμμή με κεφαλαία: ΕΛΛΑΔΑ, ΠΟΛΙΤΙΚΗ, ΟΙΚΟΝΟΜΙΑ, ΚΟΣΜΟΣ, ΠΟΛΙΤΙΣΜΟΣ, ΨΥΧΑΓΩΓΙΑ, ΥΓΕΙΑ, ΚΑΙΡΟΣ, ΕΙΔΗΣΕΙΣ, PODCASTS.</dd>
+
+      <dt>Φωτεινό θέμα</dt>
+      <dd>Το εικονίδιο <b>ήλιου</b> πάνω δεξιά. Το σχέδιο υπάρχει και σε φωτεινή εκδοχή — πατήστε το για να τη δείτε και ξανά για επιστροφή στη σκούρα.</dd>
+
+      <dt>Αριστερό συρτάρι</dt>
+      <dd>Το εικονίδιο με τις <b>τρεις γραμμές</b>, πάνω αριστερά. Ανοίγει πλήρες μενού με όλες τις κατηγορίες και τη φόρμα εγγραφής.</dd>
+
+      <dt>Δεξί συρτάρι</dt>
+      <dd>Το εικονίδιο με τα <b>τέσσερα τετράγωνα</b>, πάνω δεξιά. Ανοίγει τη σύνοψη «Η μέρα με μια ματιά».</dd>
+
+      <dt>Κλείσιμο συρταριών</dt>
+      <dd>Με το <b>×</b> μέσα στο συρτάρι, ή με κλικ στη σκοτεινή περιοχή γύρω του.</dd>
+
+      <dt>Κυλιόμενη ενημέρωση</dt>
+      <dd>Η λωρίδα ΤΩΡΑ κάτω από το μενού, με τις κουκκίδες από κάτω. Οι τίτλοι εναλλάσσονται αυτόματα.</dd>
+
+      <dt>Ετικέτες</dt>
+      <dd>Οι ετικέτες με πλαίσιο δίπλα στους τίτλους ενοτήτων στην αρχική — ΕΛΛΑΔΑ, ΚΟΣΜΟΣ, ΥΓΕΙΑ, ΤΕΧΝΟΛΟΓΙΑ και οι υπόλοιπες. Ανοίγουν τη σελίδα ετικέτας.</dd>
+
+      <dt>Σύνδεσμοι «Όλα»</dt>
+      <dd>Δίπλα σε κάθε τίτλο ενότητας. Ανοίγουν τη σελίδα κατηγορίας — και στην ενότητα βίντεο, τη σελίδα βίντεο.</dd>
+
+      <dt>Άρθρα</dt>
+      <dd>Κάθε κάρτα ανοίγει τη σελίδα άρθρου. Η σελίδα κατηγορίας περιλαμβάνει και ροή ζωντανής κάλυψης με ώρες.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Τι είναι ακόμη ανενεργό</h2></div>
+    <p class="sec-note">
+      Σε αυτό το στάδιο σχεδιάζουμε την εμφάνιση και τη ροή. Τα παρακάτω φαίνονται, αλλά δεν
+      εκτελούν πραγματική λειτουργία — θα ενεργοποιηθούν στην κατασκευή.
+    </p>
+    <div class="callout">
+      <h3>Μην περιμένετε να λειτουργήσουν</h3>
+      <ul>
+        <li><b>Η αναζήτηση</b> (ο μεγεθυντικός φακός) είναι σχεδιαστικά τοποθετημένη, δεν εκτελεί αναζήτηση.</li>
+        <li><b>Οι φόρμες εγγραφής</b> στο newsletter δεν αποστέλλουν τίποτα.</li>
+        <li><b>Τα κουμπιά κοινοποίησης</b> και οι σύνδεσμοι κοινωνικών δικτύων είναι ενδεικτικά.</li>
+        <li><b>Όλα τα άρθρα</b> οδηγούν στο ίδιο δείγμα σελίδας άρθρου· δεν υπάρχει ξεχωριστό κείμενο πίσω από κάθε τίτλο.</li>
+        <li><b>Οι φωτογραφίες</b> είναι γκρίζες θέσεις, στις σωστές αναλογίες που θα έχουν οι πραγματικές.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Τι μας βοηθά να ακούσουμε</h2></div>
+    <p class="sec-note">
+      Καθώς περιηγείστε, κρατήστε σημειώσεις. Είναι πιο χρήσιμο να μας πείτε τι σας δυσκόλεψε
+      παρά τι σας άρεσε.
+    </p>
+    <dl class="actions">
+      <dt>Πρώτη εντύπωση</dt>
+      <dd>Ποιο από τα δύο σχέδια σας μοιάζει περισσότερο με τον ΟΡΙΖΩΝ όπως τον φαντάζεστε;</dd>
+      <dt>Αναγνωσιμότητα</dt>
+      <dd>Διαβάζονται άνετα οι τίτλοι και τα κείμενα; Σε κινητό;</dd>
+      <dt>Προτεραιότητες</dt>
+      <dd>Βρίσκετε γρήγορα αυτό που θα ψάχνατε πρώτο σε μια ειδησεογραφική αρχική;</dd>
+      <dt>Λεπτομέρειες</dt>
+      <dd>Χρώματα, μεγέθη, αποστάσεις, θέση διαφημιστικών χώρων — όλα συζητιούνται.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    Τα σχέδια ανοίγουν σε κάθε σύγχρονο browser χωρίς εγκατάσταση. Αν κάποιος σύνδεσμος δεν
+    ανοίγει, αντιγράψτε τον και επικολλήστε τον στη γραμμή διεύθυνσης.
+  </footer>
+
+</div>
